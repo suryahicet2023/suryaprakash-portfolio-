@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags for Character Encoding and Viewport Configuration -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Surya Prakash - AI/ML Fresher | B.Tech Computer Science | 7.9 CGPA | Cloud, DevOps, Mobile Development">
+    <meta name="keywords" content="AI, Machine Learning, Cloud, DevOps, Android, Java, Kotlin, Azure, Docker">
+    <meta name="author" content="Surya Prakash">
+
+    <!-- Open Graph Tags for Social Media Sharing -->
+    <meta property="og:title" content="Surya Prakash - AI/ML Fresher Portfolio">
+    <meta property="og:description" content="Professional portfolio of Surya Prakash, B.Tech AI/ML fresher seeking entry-level opportunities in AI/ML and software development">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.pexels.com/photos/3945657/pexels-photo-3945657.jpeg?auto=compress&cs=tinysrgb&w=600">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Surya Prakash - AI/ML Fresher Portfolio">
+    <meta name="twitter:description" content="Professional portfolio showcasing AI/ML skills and projects">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' font-weight='bold' fill='%234A90E2'>S</text></svg>">
+
+    <!-- Title -->
+    <title>Surya Prakash - AI/ML Fresher Portfolio</title>
+
+    <!-- Stylesheet Link -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts Import -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip to Content Link for Accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- ============================================================================ -->
+    <!-- NAVIGATION HEADER SECTION -->
+    <!-- Fixed navigation bar with logo and menu items, includes mobile hamburger menu -->
+    <!-- ============================================================================ -->
+    <header class="navbar">
+        <div class="navbar-container">
+            <!-- Logo/Brand Name -->
+            <div class="navbar-logo">
+                <span class="logo-icon">S</span>
+                <span class="logo-text">Surya Prakash</span>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active" data-section="home">Home</a>
+                <a href="#about" class="nav-link" data-section="about">About</a>
+                <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+                <a href="#education" class="nav-link" data-section="education">Education</a>
+                <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            </nav>
+
+            <!-- Hamburger Menu Icon for Mobile -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+
+        <!-- ========================================================================== -->
+        <!-- HERO SECTION -->
+        <!-- Professional headline, tagline, CTA buttons, and profile image placeholder -->
+        <!-- ========================================================================== -->
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <!-- Main Headline with Typing Animation -->
+                    <h1 class="hero-title">
+                        <span class="typing-wrapper">
+                            Hi, I'm <span class="highlight">Surya Prakash</span>
+                        </span>
+                    </h1>
+
+                    <!-- Tagline -->
+                    <p class="hero-subtitle">
+                        <span id="typing-text" class="typing-text"></span>
+                        <span class="typing-cursor">|</span>
+                    </p>
+
+                    <!-- Description -->
+                    <p class="hero-description">
+                        B.Tech in Artificial Intelligence & Machine Learning | CGPA: 7.9 |
+                        Passionate about building intelligent solutions with Cloud, DevOps, and Mobile Development
+                    </p>
+
+                    <!-- Call-to-Action Buttons -->
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">View My Projects</a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+
+                    <!-- Social Media Links in Hero -->
+                    <div class="hero-social">
+                        <p class="social-label">Connect with me:</p>
+                        <div class="social-links">
+                            <a href="https://linkedin.com" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                    <rect x="2" y="9" width="4" height="12"></rect>
+                                    <circle cx="4" cy="4" r="2"></circle>
+                                </svg>
+                            </a>
+                            <a href="https://github.com" class="social-icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                                </svg>
+                            </a>
+                            <a href="https://twitter.com" class="social-icon" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2s9 5 20 0a9.5 9.5 0 0 0 3-5.5z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Image Placeholder -->
+                <div class="hero-image">
+                    <div class="image-placeholder">
+                        <img src="surya2.jpeg" alt="Surya Prakash Profile" class="profile-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <span>Scroll to explore</span>
+            </div>
+        </section>
+
+        <!-- ========================================================================== -->
+        <!-- ABOUT ME SECTION -->
+        <!-- Professional summary, career objectives, and learning mindset -->
+        <!-- ========================================================================== -->
+        <section id="about" class="about fade-in-section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="section-divider"></div>
+
+                <div class="about-content">
+                    <p class="about-text">
+                        I'm a passionate B.Tech student in Artificial Intelligence and Machine Learning with a strong foundation in
+                        software development and cloud technologies. Currently in my 5th semester with a CGPA of 7.9, I'm actively
+                        seeking entry-level opportunities to apply my technical knowledge and contribute to innovative projects.
+                    </p>
+
+                    <p class="about-text">
+                        My interest lies at the intersection of machine learning and cloud infrastructure. I'm particularly fascinated by
+                        leveraging AI/ML techniques to solve real-world problems and building scalable, robust systems. I have hands-on
+                        experience with cloud platforms like Azure, containerization with Docker and Kubernetes, and mobile application
+                        development using Kotlin and Android Studio.
+                    </p>
+
+                    <p class="about-text">
+                        Beyond academics, I'm a continuous learner who believes in staying updated with the latest technologies and best
+                        practices. I'm committed to writing clean, maintainable code and collaborating effectively with teams. I'm excited
+                        to bring my skills, enthusiasm, and problem-solving mindset to an organization where I can grow and make meaningful
+                        contributions to impactful projects.
+                    </p>
+
+                    <!-- Key Highlights -->
+                    <div class="about-highlights">
+                        <div class="highlight-box">
+                            <h3>Education</h3>
+                            <p>B.Tech in AI & ML</p>
+                            <span class="highlight-detail">7.9 CGPA (5 semesters)</span>
+                        </div>
+                        <div class="highlight-box">
+                            <h3>Status</h3>
+                            <p>Actively Seeking</p>
+                            <span class="highlight-detail">Entry-Level Opportunities</span>
+                        </div>
+                        <div class="highlight-box">
+                            <h3>Focus Areas</h3>
+                            <p>Software Development & DevOps</p>
+                            <span class="highlight-detail">Mobile Development</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================== -->
+        <!-- SKILLS SECTION -->
+        <!-- Visual skill representation with progress bars and category grouping -->
+        <!-- ========================================================================== -->
+        <section id="skills" class="skills fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="section-divider"></div>
+
+                <div class="skills-grid">
+                    <!-- Programming Languages Category -->
+                    <div class="skill-category">
+                        <h3 class="category-title">Programming Languages</h3>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Java</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Kotlin</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="80%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="75%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cloud & DevOps Category -->
+                    <div class="skill-category">
+                        <h3 class="category-title">Cloud & DevOps</h3>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Microsoft Azure</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="80%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Docker</span>
+                                <span class="skill-percentage">78%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="78%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Kubernetes</span>
+                                <span class="skill-percentage">72%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="72%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Development Tools Category -->
+                    <div class="skill-category">
+                        <h3 class="category-title">Development Tools</h3>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Git & GitHub</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Android Studio</span>
+                                <span class="skill-percentage">82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="82%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">VS Code</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="88%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI/ML & Data Science Category -->
+                    <div class="skill-category">
+                        <h3 class="category-title">AI/ML & Data Science</h3>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Machine Learning</span>
+                                <span class="skill-percentage">78%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="78%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">TensorFlow / PyTorch</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="75%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Data Analysis</span>
+                                <span class="skill-percentage">76%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 0%" data-width="76%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================== -->
+        <!-- PROJECTS PORTFOLIO SECTION -->
+        <!-- Grid layout with project cards, filtering, and hover effects -->
+        <!-- ========================================================================== -->
+        <section id="projects" class="projects fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="section-divider"></div>
+
+                <!-- Project Filter Buttons -->
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="ml">Machine Learning</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                    <button class="filter-btn" data-filter="cloud">Cloud & DevOps</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Project Card 1: ML Project -->
+                    <div class="project-card" data-category="ml">
+                        <div class="project-image">
+                            <img src="https://images.pexels.com/photos/3779035/pexels-photo-3779035.jpeg?auto=compress&cs=tinysrgb&w=600" alt="AI Model Training">
+                            <div class="project-overlay">
+                                <div class="project-overlay-content">
+                                    <h3>AI Model Performance</h3>
+                                    <p>Optimized neural networks achieving 94% accuracy</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Predictive Model using TensorFlow</h3>
+                            <p class="project-description">
+                                Developed a deep learning model for predictive analytics using TensorFlow.
+                                Achieved 94% accuracy on test dataset with comprehensive data preprocessing.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">TensorFlow</span>
+                                <span class="tech-tag">ML</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com" class="project-link" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="#" class="project-link">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2: Mobile App -->
+                    <div class="project-card" data-category="mobile">
+                        <div class="project-image">
+                            <img src="https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mobile App Development">
+                            <div class="project-overlay">
+                                <div class="project-overlay-content">
+                                    <h3>Android App Success</h3>
+                                    <p>Feature-rich application with 4.8 star rating</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Task Management Android App</h3>
+                            <p class="project-description">
+                                Built a feature-rich task management application in Kotlin with offline sync capability,
+                                real-time notifications, and intuitive UI design.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Kotlin</span>
+                                <span class="tech-tag">Android</span>
+                                <span class="tech-tag">Firebase</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com" class="project-link" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="#" class="project-link">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3: Cloud/DevOps -->
+                    <div class="project-card" data-category="cloud">
+                        <div class="project-image">
+                            <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cloud Infrastructure">
+                            <div class="project-overlay">
+                                <div class="project-overlay-content">
+                                    <h3>Kubernetes Deployment</h3>
+                                    <p>Automated containerized application orchestration</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Microservices on Azure with Kubernetes</h3>
+                            <p class="project-description">
+                                Designed and deployed microservices architecture on Azure using Kubernetes.
+                                Implemented CI/CD pipelines with automatic scaling and load balancing.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Azure</span>
+                                <span class="tech-tag">Kubernetes</span>
+                                <span class="tech-tag">Docker</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com" class="project-link" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="#" class="project-link">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 4: ML Project -->
+                    <div class="project-card" data-category="ml">
+                        <div class="project-image">
+                            <img src="https://images.pexels.com/photos/3825517/pexels-photo-3825517.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Data Analysis">
+                            <div class="project-overlay">
+                                <div class="project-overlay-content">
+                                    <h3>Data Insights</h3>
+                                    <p>Comprehensive analysis revealing key patterns</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Sentiment Analysis Using NLP</h3>
+                            <p class="project-description">
+                                Created NLP model for sentiment analysis on social media data.
+                                Processed 100K+ tweets with 89% classification accuracy.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">NLP</span>
+                                <span class="tech-tag">PyTorch</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com" class="project-link" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="#" class="project-link">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 5: Mobile App -->
+                    <div class="project-card" data-category="mobile">
+                        <div class="project-image">
+                            <img src="https://images.pexels.com/photos/3379934/pexels-photo-3379934.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Weather App">
+                            <div class="project-overlay">
+                                <div class="project-overlay-content">
+                                    <h3>Weather Forecasting</h3>
+                                    <p>Real-time weather updates with beautiful UI</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Weather Forecast Application</h3>
+                            <p class="project-description">
+                                Developed weather forecasting Android app with real-time API integration,
+                                location services, and beautiful material design UI.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Kotlin</span>
+                                <span class="tech-tag">Android</span>
+                                <span class="tech-tag">REST API</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com" class="project-link" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="#" class="project-link">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 6: Cloud/DevOps -->
+                    <div class="project-card" data-category="cloud">
+                        <div class="project-image">
+                            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600" alt="CI/CD Pipeline">
+                            <div class="project-overlay">
+                                <div class="project-overlay-content">
+                                    <h3>Automated Deployment</h3>
+                                    <p>End-to-end CI/CD pipeline with zero downtime</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">CI/CD Pipeline with GitHub Actions</h3>
+                            <p class="project-description">
+                                Built automated deployment pipeline using GitHub Actions with Docker containerization,
+                                automated testing, and continuous deployment to Azure.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">GitHub Actions</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">Azure</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com" class="project-link" target="_blank" rel="noopener noreferrer">View Code</a>
+                                <a href="#" class="project-link">Live Demo</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================== -->
+        <!-- EDUCATION & CERTIFICATIONS SECTION -->
+        <!-- Academic details with CGPA, timeline layout -->
+        <!-- ========================================================================== -->
+        <section id="education" class="education fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Education & Certifications</h2>
+                <div class="section-divider"></div>
+
+                <div class="education-grid">
+                    <!-- Education Timeline -->
+                    <div class="education-column">
+                        <h3 class="education-subtitle">Academic Qualifications</h3>
+
+                        <div class="education-item">
+                            <div class="education-marker"></div>
+                            <div class="education-content">
+                                <h4 class="education-title">B.Tech in Artificial Intelligence & Machine Learning</h4>
+                                <p class="education-institution">Your University Name</p>
+                                <p class="education-period">2022 - 2026</p>
+                                <div class="education-details">
+                                    <span class="cgpa-badge">CGPA: 7.9</span>
+                                    <p class="education-description">5 semesters completed. Currently pursuing degree with focus on AI/ML technologies.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="education-item">
+                            <div class="education-marker"></div>
+                            <div class="education-content">
+                                <h4 class="education-title">12th Grade</h4>
+                                <p class="education-institution">Your School Name</p>
+                                <p class="education-period">Year</p>
+                                <p class="education-description">Strong foundation in mathematics and science.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="education-column">
+                        <h3 class="education-subtitle">Certifications & Achievements</h3>
+
+                        <div class="certification-item">
+                            <div class="cert-icon">🏆</div>
+                            <div class="cert-content">
+                                <h4>Azure Fundamentals</h4>
+                                <p>Microsoft Certified Associate</p>
+                                <span class="cert-date">2024</span>
+                            </div>
+                        </div>
+
+                        <div class="certification-item">
+                            <div class="cert-icon">📊</div>
+                            <div class="cert-content">
+                                <h4>Machine Learning Specialization</h4>
+                                <p>Coursera Verified Certificate</p>
+                                <span class="cert-date">2023</span>
+                            </div>
+                        </div>
+
+                        <div class="certification-item">
+                            <div class="cert-icon">🐳</div>
+                            <div class="cert-content">
+                                <h4>Docker & Kubernetes Bootcamp</h4>
+                                <p>Online Certification</p>
+                                <span class="cert-date">2023</span>
+                            </div>
+                        </div>
+
+                        <div class="certification-item">
+                            <div class="cert-icon">📱</div>
+                            <div class="cert-content">
+                                <h4>Android App Development</h4>
+                                <p>Professional Training Certificate</p>
+                                <span class="cert-date">2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================================== -->
+        <!-- CONTACT SECTION -->
+        <!-- Working contact form with validation, social media links, contact info -->
+        <!-- ========================================================================== -->
+        <section id="contact" class="contact fade-in-section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="section-divider"></div>
+
+                <p class="contact-subtitle">
+                    I'm always interested in hearing about new opportunities and projects. Feel free to reach out!
+                </p>
+
+                <div class="contact-wrapper">
+                    <!-- Contact Form -->
+                    <form class="contact-form" id="contactForm" novalidate>
+                        <!-- Honeypot field for spam protection (hidden) -->
+                        <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="form-input"
+                                placeholder="John Doe"
+                                required
+                                aria-describedby="name-error"
+                            >
+                            <span class="error-message" id="name-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Your Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="form-input"
+                                placeholder="john@example.com"
+                                required
+                                aria-describedby="email-error"
+                            >
+                            <span class="error-message" id="email-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input
+                                type="text"
+                                id="subject"
+                                name="subject"
+                                class="form-input"
+                                placeholder="Project Opportunity"
+                                required
+                                aria-describedby="subject-error"
+                            >
+                            <span class="error-message" id="subject-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea
+                                id="message"
+                                name="message"
+                                class="form-input form-textarea"
+                                placeholder="Your message here..."
+                                rows="5"
+                                required
+                                aria-describedby="message-error"
+                            ></textarea>
+                            <span class="error-message" id="message-error"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">Send Message</button>
+                        <span class="form-status" id="formStatus"></span>
+                    </form>
+
+                    <!-- Contact Information -->
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <div class="info-icon">📧</div>
+                            <h4>Email</h4>
+                            <a href="mailto:surya@example.com">surya@example.com</a>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">📱</div>
+                            <h4>Phone</h4>
+                            <a href="tel:+919876543210">+91 98765 43210</a>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">📍</div>
+                            <h4>Location</h4>
+                            <p>City, State, India</p>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">⏰</div>
+                            <h4>Response Time</h4>
+                            <p>Usually replies within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Links -->
+                <div class="contact-social">
+                    <p>Connect with me on social media:</p>
+                    <div class="social-links-large">
+                        <a href="https://linkedin.com" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com" class="social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://twitter.com" class="social-btn" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2s9 5 20 0a9.5 9.5 0 0 0 3-5.5z"></path>
+                            </svg>
+                            Twitter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================================ -->
+    <!-- FOOTER SECTION -->
+    <!-- Copyright and navigation footer -->
+    <!-- ============================================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Surya Prakash. All rights reserved.</p>
+                <p>Built with <span class="heart">♥</span> using HTML, CSS & JavaScript</p>
+            </div>
+            <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript File -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>
