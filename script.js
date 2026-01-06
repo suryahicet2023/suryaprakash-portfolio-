@@ -24,22 +24,27 @@
 /* ================= FIREBASE SETUP ================= */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCc2TOWAStlZh00qw6nRincYY5kWfiQf70",
-    authDomain: "portfolio-contact-a685f.firebaseapp.com",
-    projectId: "portfolio-contact-a685f",
-    storageBucket: "portfolio-contact-a685f.appspot.com",
-    messagingSenderId: "1098935254106",
-    appId: "1:1098935254106:web:f15c9736ae737e40476c63"
+  apiKey: "AIzaSyCc2TOWAStlZh00qw6nRincYY5kWfiQf70",
+  authDomain: "portfolio-contact-a685f.firebaseapp.com",
+  projectId: "portfolio-contact-a685f",
+  storageBucket: "portfolio-contact-a685f.appspot.com",
+  messagingSenderId: "1098935254106",
+  appId: "1:1098935254106:web:f15c9736ae737e40476c63"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-/* ================================================== */
-
+// ✅ Correct ONLY if email.min.js is loaded in HTML
+emailjs.init("yimsNvie3mecjdnFo");
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 const navbar = document.querySelector('.navbar');
@@ -339,59 +344,53 @@ filterBtns.forEach((btn) => {
 });
 
 /* ============================================================================ */
-/* 10. CONTACT FORM VALIDATION & SUBMISSION (FIREBASE ENABLED) */
-/* ================================
-   PORTFOLIO WEBSITE JAVASCRIPT
-   Contact Form + Validation + EmailJS
-   ================================ */
+/* 10. CONTACT FORM VALIDATION & SUBMISSION (EMAILJS ENABLED) */
+/* ============================================================================ */
 
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 
-// Email validation
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const subjectInput = document.getElementById("subject");
+const messageInput = document.getElementById("message");
+
+/* ================= VALIDATION ================= */
+
 function validateEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// Show error messages
-function showError(fieldName, errorText) {
-  const field = document.getElementById(fieldName);
-  const errorElement = document.getElementById(`${fieldName}-error`);
-  field.classList.add("error");
-  errorElement.textContent = errorText;
-  errorElement.classList.add("show");
+function showError(field, message) {
+  const input = document.getElementById(field);
+  const error = document.getElementById(`${field}-error`);
+  input.classList.add("error");
+  error.textContent = message;
+  error.classList.add("show");
 }
 
-// Validate form fields
 function validateForm() {
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const subject = document.getElementById("subject").value.trim();
-  const message = document.getElementById("message").value.trim();
-
-  // Reset previous errors
-  document.querySelectorAll(".form-input").forEach((input) => input.classList.remove("error"));
-  document.querySelectorAll(".error-message").forEach((msg) => msg.classList.remove("show"));
+  document.querySelectorAll(".form-input").forEach(i => i.classList.remove("error"));
+  document.querySelectorAll(".error-message").forEach(e => e.classList.remove("show"));
 
   let isValid = true;
 
-  if (name.length < 2) {
+  if (nameInput.value.trim().length < 2) {
     showError("name", "Name must be at least 2 characters");
     isValid = false;
   }
 
-  if (!validateEmail(email)) {
-    showError("email", "Please enter a valid email address");
+  if (!validateEmail(emailInput.value.trim())) {
+    showError("email", "Enter a valid email");
     isValid = false;
   }
 
-  if (subject.length < 3) {
+  if (subjectInput.value.trim().length < 3) {
     showError("subject", "Subject must be at least 3 characters");
     isValid = false;
   }
 
-  if (message.length < 10) {
+  if (messageInput.value.trim().length < 10) {
     showError("message", "Message must be at least 10 characters");
     isValid = false;
   }
@@ -399,64 +398,57 @@ function validateForm() {
   return isValid;
 }
 
-// Handle form submission
-if (contactForm) {
-  contactForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+/* ================= FORM SUBMISSION ================= */
 
-    // Reset form status
-    formStatus.className = "";
-    formStatus.textContent = "";
+contactForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    // Honeypot check to prevent spam
-    if (contactForm.website.value) return;
+  formStatus.textContent = "";
+  formStatus.className = "";
 
-    // Validate form fields
-    if (!validateForm()) {
-      formStatus.className = "form-status error";
-      formStatus.textContent = "Please fix the errors above";
-      return;
-    }
+  // Honeypot (spam protection)
+  if (contactForm.website.value) return;
 
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = "Sending...";
-    submitBtn.disabled = true;
+  if (!validateForm()) {
+    formStatus.className = "form-status error";
+    formStatus.textContent = "Please fix the errors above";
+    return;
+  }
 
-    // Prepare EmailJS template parameters
-    const templateParams = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      subject: document.getElementById("subject").value,
-      message: document.getElementById("message").value,
-      time: new Date().toLocaleString()
-    };
+  const submitBtn = contactForm.querySelector("button");
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = "Sending...";
+  submitBtn.disabled = true;
 
-    try {
-      // Send email using EmailJS
-      await emailjs.send(
-        "service_3imbcfn",   // Your EmailJS Service ID
-        "template_6s3mi0j",  // Your EmailJS Template ID
-        templateParams
-      );
+  const templateParams = {
+    name: nameInput.value,
+    email: emailInput.value,
+    subject: subjectInput.value,
+    message: messageInput.value,
+    time: new Date().toLocaleString()
+  };
 
-      // Show success message
-      formStatus.className = "form-status success";
-      formStatus.textContent = "Message sent successfully! I will get back to you soon.";
+  try {
+    await emailjs.send(
+      "service_3imbcfn",
+      "template_6s3mi0j",
+      templateParams
+    );
 
-      // Reset the form
-      contactForm.reset();
-    } catch (error) {
-      console.error("EmailJS error:", error);
-      formStatus.className = "form-status error";
-      formStatus.textContent = "Something went wrong. Please try again later.";
-    } finally {
-      // Restore submit button state
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
-    }
-  });
-}
+    formStatus.className = "form-status success";
+    formStatus.textContent = "Message sent successfully!";
+    contactForm.reset();
+
+  } catch (err) {
+    console.error("EmailJS error:", err);
+    formStatus.className = "form-status error";
+    formStatus.textContent = "Failed to send message. Try again.";
+  } finally {
+    submitBtn.textContent = originalText;
+    submitBtn.disabled = false;
+  }
+});
+
 
 
 /* ============================================================================ */
@@ -588,3 +580,17 @@ function isInViewport(element) {
 /* ============================================================================ */
 /* END OF SCRIPT */
 /* ============================================================================ */
+emailjs.send(
+  "service_3imbcfn",
+  "template_6s3mi0j",
+  {
+    name: "Test User",
+    email: "test@example.com",
+    subject: "Test Email",
+    message: "If you see this, EmailJS works",
+    time: new Date().toLocaleString()
+  }
+).then(
+  () => console.log("✅ EmailJS test SUCCESS"),
+  (err) => console.error("❌ EmailJS test FAILED", err)
+);
