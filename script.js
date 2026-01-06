@@ -340,7 +340,6 @@ filterBtns.forEach((btn) => {
 
 /* ============================================================================ */
 /* 10. CONTACT FORM VALIDATION & SUBMISSION (FIREBASE ENABLED) */
-/* ============================================================================ */
 /* ================================
    PORTFOLIO WEBSITE JAVASCRIPT
    Contact Form + Validation + EmailJS
@@ -349,14 +348,13 @@ filterBtns.forEach((btn) => {
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 
-/* ------------------------------
-   Form Validation Functions
------------------------------- */
+// Email validation
 function validateEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
+// Show error messages
 function showError(fieldName, errorText) {
   const field = document.getElementById(fieldName);
   const errorElement = document.getElementById(`${fieldName}-error`);
@@ -365,18 +363,16 @@ function showError(fieldName, errorText) {
   errorElement.classList.add("show");
 }
 
+// Validate form fields
 function validateForm() {
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const subject = document.getElementById("subject").value.trim();
   const message = document.getElementById("message").value.trim();
 
-  document.querySelectorAll(".form-input").forEach((input) => {
-    input.classList.remove("error");
-  });
-  document.querySelectorAll(".error-message").forEach((msg) => {
-    msg.classList.remove("show");
-  });
+  // Reset previous errors
+  document.querySelectorAll(".form-input").forEach((input) => input.classList.remove("error"));
+  document.querySelectorAll(".error-message").forEach((msg) => msg.classList.remove("show"));
 
   let isValid = true;
 
@@ -403,20 +399,19 @@ function validateForm() {
   return isValid;
 }
 
-/* ------------------------------
-   Contact Form Submission
-   Using EmailJS
------------------------------- */
+// Handle form submission
 if (contactForm) {
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // Reset form status
     formStatus.className = "";
     formStatus.textContent = "";
 
-    // Honeypot field check
+    // Honeypot check to prevent spam
     if (contactForm.website.value) return;
 
+    // Validate form fields
     if (!validateForm()) {
       formStatus.className = "form-status error";
       formStatus.textContent = "Please fix the errors above";
@@ -428,6 +423,7 @@ if (contactForm) {
     submitBtn.textContent = "Sending...";
     submitBtn.disabled = true;
 
+    // Prepare EmailJS template parameters
     const templateParams = {
       name: document.getElementById("name").value,
       email: document.getElementById("email").value,
@@ -437,26 +433,25 @@ if (contactForm) {
     };
 
     try {
-      // Send email via EmailJS
+      // Send email using EmailJS
       await emailjs.send(
-        "service_3imbcfn",   // Replace with your EmailJS Service ID
-        "template_6s3mi0j",  // Replace with your EmailJS Template ID
+        "service_3imbcfn",   // Your EmailJS Service ID
+        "template_6s3mi0j",  // Your EmailJS Template ID
         templateParams
       );
 
       // Show success message
       formStatus.className = "form-status success";
-      formStatus.textContent =
-        "Message sent successfully! I will get back to you soon.";
+      formStatus.textContent = "Message sent successfully! I will get back to you soon.";
 
-      // Reset form
+      // Reset the form
       contactForm.reset();
     } catch (error) {
       console.error("EmailJS error:", error);
       formStatus.className = "form-status error";
-      formStatus.textContent =
-        "Something went wrong. Please try again later.";
+      formStatus.textContent = "Something went wrong. Please try again later.";
     } finally {
+      // Restore submit button state
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
     }
