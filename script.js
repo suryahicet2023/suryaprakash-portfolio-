@@ -341,119 +341,128 @@ filterBtns.forEach((btn) => {
 /* ============================================================================ */
 /* 10. CONTACT FORM VALIDATION & SUBMISSION (FIREBASE ENABLED) */
 /* ============================================================================ */
+/* ================================
+   PORTFOLIO WEBSITE JAVASCRIPT
+   Contact Form + Validation + EmailJS
+   ================================ */
 
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
+
+/* ------------------------------
+   Form Validation Functions
+------------------------------ */
 function validateEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-function validateForm() {
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    document.querySelectorAll('.form-input').forEach((input) => {
-        input.classList.remove('error');
-    });
-    document.querySelectorAll('.error-message').forEach((msg) => {
-        msg.classList.remove('show');
-    });
-
-    let isValid = true;
-
-    if (name.length < 2) {
-        showError('name', 'Name must be at least 2 characters');
-        isValid = false;
-    }
-
-    if (!validateEmail(email)) {
-        showError('email', 'Please enter a valid email address');
-        isValid = false;
-    }
-
-    if (subject.length < 3) {
-        showError('subject', 'Subject must be at least 3 characters');
-        isValid = false;
-    }
-
-    if (message.length < 10) {
-        showError('message', 'Message must be at least 10 characters');
-        isValid = false;
-    }
-
-    return isValid;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }
 
 function showError(fieldName, errorText) {
-    const field = document.getElementById(fieldName);
-    const errorElement = document.getElementById(`${fieldName}-error`);
-
-    field.classList.add('error'); 
-    errorElement.textContent = errorText;
-    errorElement.classList.add('show');
+  const field = document.getElementById(fieldName);
+  const errorElement = document.getElementById(`${fieldName}-error`);
+  field.classList.add("error");
+  errorElement.textContent = errorText;
+  errorElement.classList.add("show");
 }
 
-/* Handle form submission */
+function validateForm() {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const subject = document.getElementById("subject").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  document.querySelectorAll(".form-input").forEach((input) => {
+    input.classList.remove("error");
+  });
+  document.querySelectorAll(".error-message").forEach((msg) => {
+    msg.classList.remove("show");
+  });
+
+  let isValid = true;
+
+  if (name.length < 2) {
+    showError("name", "Name must be at least 2 characters");
+    isValid = false;
+  }
+
+  if (!validateEmail(email)) {
+    showError("email", "Please enter a valid email address");
+    isValid = false;
+  }
+
+  if (subject.length < 3) {
+    showError("subject", "Subject must be at least 3 characters");
+    isValid = false;
+  }
+
+  if (message.length < 10) {
+    showError("message", "Message must be at least 10 characters");
+    isValid = false;
+  }
+
+  return isValid;
+}
+
+/* ------------------------------
+   Contact Form Submission
+   Using EmailJS
+------------------------------ */
 if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        formStatus.className = '';
-        formStatus.textContent = '';
+    formStatus.className = "";
+    formStatus.textContent = "";
 
-        /* Honeypot spam protection */
-        const honeypot = contactForm.querySelector('input[name="website"]').value;
-        if (honeypot) return;
+    // Honeypot field check
+    if (contactForm.website.value) return;
 
-        if (!validateForm()) {
-            formStatus.className = 'form-status error';
-            formStatus.textContent = 'Please fix the errors above';
-            return;
-        }
+    if (!validateForm()) {
+      formStatus.className = "form-status error";
+      formStatus.textContent = "Please fix the errors above";
+      return;
+    }
 
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        submitBtn.disabled = true;
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
 
-        const formData = {
-            name: document.getElementById('name').value.trim(),
-            email: document.getElementById('email').value.trim(),
-            subject: document.getElementById('subject').value.trim(),
-            message: document.getElementById('message').value.trim()
-        };
+    const templateParams = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      subject: document.getElementById("subject").value,
+      message: document.getElementById("message").value,
+      time: new Date().toLocaleString()
+    };
 
-        try {
-            await addDoc(collection(db, "contacts"), {
-                ...formData,
-                createdAt: serverTimestamp()
-            });
+    try {
+      // Send email via EmailJS
+      await emailjs.send(
+        "service_3imbcfn",   // Replace with your EmailJS Service ID
+        "template_6s3mi0j",  // Replace with your EmailJS Template ID
+        templateParams
+      );
 
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
+      // Show success message
+      formStatus.className = "form-status success";
+      formStatus.textContent =
+        "Message sent successfully! I will get back to you soon.";
 
-            formStatus.className = 'form-status success';
-            formStatus.textContent = 'Message sent successfully! I will get back to you soon.';
-
-            contactForm.reset();
-
-            setTimeout(() => {
-                formStatus.className = '';
-                formStatus.textContent = '';
-            }, 5000);
-
-        } catch (error) {
-            console.error(error);
-
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-
-            formStatus.className = 'form-status error';
-            formStatus.textContent = 'Failed to send message. Please try again later.';
-        }
-    });
+      // Reset form
+      contactForm.reset();
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      formStatus.className = "form-status error";
+      formStatus.textContent =
+        "Something went wrong. Please try again later.";
+    } finally {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
 }
+
 
 /* ============================================================================ */
 /* 11. SCROLL TO TOP BUTTON */
