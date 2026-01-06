@@ -24,13 +24,7 @@
 /* ================= FIREBASE SETUP ================= */
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
-
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 const firebaseConfig = {
   apiKey: "AIzaSyCc2TOWAStlZh00qw6nRincYY5kWfiQf70",
   authDomain: "portfolio-contact-a685f.firebaseapp.com",
