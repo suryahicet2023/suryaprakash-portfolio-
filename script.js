@@ -341,7 +341,6 @@ filterBtns.forEach((btn) => {
 /* 10. CONTACT FORM VALIDATION & SUBMISSION (EMAILJS ENABLED) */
 /* ============================================================================ */
 
-const formStatus = document.getElementById("formStatus");
 
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
