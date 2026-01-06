@@ -572,17 +572,3 @@ function isInViewport(element) {
 /* ============================================================================ */
 /* END OF SCRIPT */
 /* ============================================================================ */
-emailjs.send(
-  "service_3imbcfn",
-  "template_6s3mi0j",
-  {
-    name: "Test User",
-    email: "test@example.com",
-    subject: "Test Email",
-    message: "If you see this, EmailJS works",
-    time: new Date().toLocaleString()
-  }
-).then(
-  () => console.log("✅ EmailJS test SUCCESS"),
-  (err) => console.error("❌ EmailJS test FAILED", err)
-);
