@@ -21,6 +21,24 @@
 /* 1. INITIALIZATION & DOM ELEMENTS CACHING */
 /* ============================================================================ */
 /* Cache frequently accessed DOM elements for better performance */
+/* ================= FIREBASE SETUP ================= */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCc2TOWAStlZh00qw6nRincYY5kWfiQf70",
+    authDomain: "portfolio-contact-a685f.firebaseapp.com",
+    projectId: "portfolio-contact-a685f",
+    storageBucket: "portfolio-contact-a685f.appspot.com",
+    messagingSenderId: "1098935254106",
+    appId: "1:1098935254106:web:f15c9736ae737e40476c63"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* ================================================== */
 
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
@@ -321,24 +339,20 @@ filterBtns.forEach((btn) => {
 });
 
 /* ============================================================================ */
-/* 10. CONTACT FORM VALIDATION & SUBMISSION */
+/* 10. CONTACT FORM VALIDATION & SUBMISSION (FIREBASE ENABLED) */
 /* ============================================================================ */
-/* Validate form inputs and handle submission */
 
 function validateEmail(email) {
-    /* Email validation regex */
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
 function validateForm() {
-    /* Get form values */
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const subject = document.getElementById('subject').value.trim();
     const message = document.getElementById('message').value.trim();
 
-    /* Reset error states */
     document.querySelectorAll('.form-input').forEach((input) => {
         input.classList.remove('error');
     });
@@ -348,25 +362,21 @@ function validateForm() {
 
     let isValid = true;
 
-    /* Validate name */
     if (name.length < 2) {
         showError('name', 'Name must be at least 2 characters');
         isValid = false;
     }
 
-    /* Validate email */
     if (!validateEmail(email)) {
         showError('email', 'Please enter a valid email address');
         isValid = false;
     }
 
-    /* Validate subject */
     if (subject.length < 3) {
         showError('subject', 'Subject must be at least 3 characters');
         isValid = false;
     }
 
-    /* Validate message */
     if (message.length < 10) {
         showError('message', 'Message must be at least 10 characters');
         isValid = false;
@@ -376,75 +386,72 @@ function validateForm() {
 }
 
 function showError(fieldName, errorText) {
-    /* Get field and error element */
     const field = document.getElementById(fieldName);
     const errorElement = document.getElementById(`${fieldName}-error`);
 
-    /* Show error */
-    field.classList.add('error');
+    field.classList.add('error'); 
     errorElement.textContent = errorText;
     errorElement.classList.add('show');
 }
 
 /* Handle form submission */
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        /* Clear previous status message */
         formStatus.className = '';
         formStatus.textContent = '';
 
-        /* Check for spam (honeypot field) */
+        /* Honeypot spam protection */
         const honeypot = contactForm.querySelector('input[name="website"]').value;
-        if (honeypot) {
-            /* Spam detected, silently fail */
-            return;
-        }
+        if (honeypot) return;
 
-        /* Validate form */
         if (!validateForm()) {
             formStatus.className = 'form-status error';
             formStatus.textContent = 'Please fix the errors above';
             return;
         }
 
-        /* Show loading state */
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
 
-        /* Get form data */
         const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
+            name: document.getElementById('name').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            subject: document.getElementById('subject').value.trim(),
+            message: document.getElementById('message').value.trim()
         };
 
-        /* Simulate form submission (in production, send to backend) */
-        setTimeout(() => {
-            /* Reset button state */
+        try {
+            await addDoc(collection(db, "contacts"), {
+                ...formData,
+                createdAt: serverTimestamp()
+            });
+
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
 
-            /* Show success message */
             formStatus.className = 'form-status success';
             formStatus.textContent = 'Message sent successfully! I will get back to you soon.';
 
-            /* Reset form fields */
             contactForm.reset();
 
-            /* Clear success message after 5 seconds */
             setTimeout(() => {
                 formStatus.className = '';
                 formStatus.textContent = '';
             }, 5000);
 
-            /* Log form data (for demonstration) */
-            console.log('Form submitted with data:', formData);
-        }, 1500);
+        } catch (error) {
+            console.error(error);
+
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+
+            formStatus.className = 'form-status error';
+            formStatus.textContent = 'Failed to send message. Please try again later.';
+        }
     });
 }
 
